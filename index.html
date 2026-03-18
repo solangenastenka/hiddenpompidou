@@ -7,8 +7,11 @@
         body { background-color: #000; color: #0f0; font-family: "Courier New", Courier, monospace; padding: 50px; line-height: 1.4; }
         
         /* Conteneur pour centrer et limiter la largeur sur le titre */
-        .wrapper { max-width: 650px; margin: 0 auto; }
-
+.wrapper { 
+    max-width: 800px; 
+    margin: 0; /* Aligne le bloc à gauche */
+    text-align: left;
+}
         pre { 
             color: #0f0; 
             line-height: 1.1; 
@@ -20,10 +23,11 @@
         }
 
         #searchBar { 
-            width: 100%; 
+            width: 655px; 
             box-sizing: border-box; /* Pour que le padding ne dépasse pas */
             background-color: #000; 
             border: 1px solid #0f0; 
+            letter-spacing: 0px; /* Empêche les lettres de s'écarter */
             color: #0f0; 
             padding: 10px; 
             font-family: "Courier New", Courier, monospace; 
