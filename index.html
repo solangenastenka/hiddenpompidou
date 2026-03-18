@@ -4,19 +4,40 @@
     <meta charset="UTF-8">
     <title>HIDDEN POMPIDOU</title>
     <style>
-        body { background-color: #000; color: #0f0; font-family: "Courier New", Courier, monospace; padding: 50px; line-height: 1.4; }
-        <img src="ground_symbol.png" style="
-    display: block; 
-    width: 50px; 
-    margin-bottom: 25px; 
-    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(120%) contrast(110%);
-    opacity: 0.9;
-">
-        /* Conteneur pour centrer et limiter la largeur sur le titre */
-.wrapper { 
-    max-width: 800px; 
-    margin: 0; /* Aligne le bloc à gauche */
-    text-align: left;
+        body { 
+            background-color: #000; 
+            color: #0f0; 
+            font-family: "Courier New", Courier, monospace; 
+            padding: 50px; 
+            line-height: 1.4; 
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: 0;
+            text-align: left;
+        }
+
+        .logo-tech {
+            display: block;
+            width: 50px; /* Ajuste la taille ici */
+            margin-bottom: 25px;
+            /* Ce filtre transforme le noir en vert fluo #0f0 */
+            filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(120%) contrast(110%);
+        }
+
+        pre {
+            color: #0f0;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+    <div class="wrapper">
+        <img src="ground_symbol.png" class="logo-tech" alt="Logo">
+
+        <pre>
 }
         pre { 
             color: #0f0; 
@@ -252,5 +273,18 @@ function searchFunction() {
     }
 }
 </script>
+
+</body>
+</html>
+
+<body>
+
+    <div class="wrapper">
+        <img src="ground_symbol.png" class="logo-tech" alt="Logo Tech">
+        
+        <pre>
+</pre>
+    </div>
+
 </body>
 </html>
