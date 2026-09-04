@@ -5,30 +5,138 @@
     <title>HIDDEN POMPIDOU</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22 fill=%22black%22>⏚</text></svg>">
     <style>
-        body { background-color: #000; color: #0f0; font-family: "Courier New", Courier, monospace; padding: 50px; line-height: 1.4; }
-        .wrapper { max-width: 850px; margin: 0; text-align: left; }
-    .logo-tech {
-            font-size: 60px;
-            color: #eee; /* Un blanc/gris très clair pour être visible sur le noir */
-            margin-bottom: 20px;
-            display: block;
+        /* Mode par défaut : TOUT en noir pur (#000000) sur fond blanc (#ffffff) */
+        :root {
+            --bg-color: #ffffff;
+            --main-black: #000000;
+            --footer-subtle: #d0d0d0; /* La seule exception : signature discrète */
         }
-        pre { color: #0f0; line-height: 1.1; margin-bottom: 30px; font-weight: bold; font-size: 14px; white-space: pre; }
-        #searchBar { width: 100%; max-width: 815px; box-sizing: border-box; background-color: #000; border: 1px solid #0f0; color: #0f0; padding: 10px; font-family: "Courier New", Courier, monospace; font-size: 1.1em; margin-bottom: 40px; outline: none; }
-        #searchBar::placeholder { color: #050; }
-        h2 { text-decoration: underline; text-transform: uppercase; margin-top: 40px; color: #0f0; font-size: 1.1em; }
-        ul { list-style-type: " > "; padding-left: 20px; }
-        li { margin-bottom: 5px; }
-        a { color: #0f0; text-decoration: none; }
-        a:hover { background-color: #0f0; color: #000; }
-        .footer { margin-top: 50px; border-top: 1px solid #0f0; padding-top: 20px; text-align: right; font-size: 1.2em; color: #111; transition: color 0.5s; }
-        .footer:hover { color: #0f0; }
-        .hidden { display: none; }
+
+        /* Mode sombre : TOUT en blanc pur (#ffffff) sur fond noir (#000000) */
+        body.dark-theme {
+            --bg-color: #000000;
+            --main-black: #ffffff;
+            --footer-subtle: #222222; /* Signature discrète en sombre */
+        }
+
+        body { 
+            background-color: var(--bg-color); 
+            color: var(--main-black); 
+            font-family: "Courier New", Courier, monospace; 
+            padding: 50px; 
+            line-height: 1.4; 
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .wrapper { 
+            max-width: 850px; 
+            margin: 0; 
+            text-align: left; 
+            position: relative;
+        }
+
+        /* Bouton de bascule de thème */
+        #themeToggle {
+            float: right;
+            background: transparent;
+            border: 1px solid var(--main-black);
+            color: var(--main-black);
+            padding: 6px 12px;
+            font-family: inherit;
+            font-size: 0.85em;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        #themeToggle:hover {
+            background-color: var(--main-black);
+            color: var(--bg-color);
+        }
+
+        pre { 
+            color: var(--main-black); 
+            line-height: 1.1; 
+            margin-bottom: 30px; 
+            font-weight: bold; 
+            font-size: 14px; 
+            white-space: pre; 
+            clear: both;
+        }
+
+        #searchBar { 
+            width: 100%; 
+            max-width: 815px; 
+            box-sizing: border-box; 
+            background-color: var(--bg-color); 
+            border: 1px solid var(--main-black); 
+            color: var(--main-black); 
+            padding: 10px; 
+            font-family: "Courier New", Courier, monospace; 
+            font-size: 1.1em; 
+            margin-bottom: 40px; 
+            outline: none; 
+        }
+
+        /* Texte du placeholder lui aussi en noir */
+        #searchBar::placeholder { 
+            color: var(--main-black); 
+            opacity: 0.6;
+        }
+
+        h2 { 
+            text-decoration: underline; 
+            text-transform: uppercase; 
+            margin-top: 40px; 
+            color: var(--main-black); 
+            font-size: 1.1em; 
+        }
+
+        ul { 
+            list-style-type: " > "; 
+            padding-left: 20px; 
+            color: var(--main-black);
+        }
+
+        li { 
+            margin-bottom: 5px; 
+            color: var(--main-black);
+        }
+
+        a { 
+            color: var(--main-black); 
+            text-decoration: none; 
+        }
+
+        a:hover { 
+            background-color: var(--main-black); 
+            color: var(--bg-color); 
+        }
+
+        /* Seul élément différent : la signature en bas */
+        .footer { 
+            margin-top: 50px; 
+            border-top: 1px solid var(--main-black); 
+            padding-top: 20px; 
+            text-align: right; 
+            font-size: 1.2em; 
+            color: var(--footer-subtle); 
+            transition: color 0.4s ease; 
+        }
+
+        .footer:hover { 
+            color: var(--main-black); 
+        }
+
+        .hidden { 
+            display: none; 
+        }
     </style>
 </head>
 <body>
 
 <div class="wrapper">
+    <button id="themeToggle" onclick="toggleTheme()">[ Mode sombre ]</button>
+
     <pre>
  _    _ _____ _____  _____  ______ _   _   _____   ____  __  __ _____ _____ _____   ____  _    _ 
 | |  | |_   _|  __ \|  __ \|  ____| \ | | |  __ \ / __ \|  \/  |  __ \_   _|  __ \ / __ \| |  | |
@@ -38,7 +146,7 @@
 |_|  |_|_____|_____/|_____/|______|_| \_| |_|     \____/|_|  |_|_|   |_____|_____/ \____/ \____/ 
     </pre>
 
-    <input type="text" id="searchBar" placeholder="[ TAPEZ UN MOT-CLEF POUR FILTRER... ]" onkeyup="searchFunction()">
+    <input type="text" id="searchBar" placeholder="[ tapez un mot pour filtrer... ]" onkeyup="searchFunction()">
 
     <div id="content">
         <div class="category">
@@ -202,6 +310,7 @@
 </div>
 
 <script>
+// Recherche
 function searchFunction() {
     let input = document.getElementById('searchBar').value.toLowerCase();
     let items = document.getElementsByTagName('li');
@@ -215,6 +324,22 @@ function searchFunction() {
         categories[i].classList.toggle('hidden', visibleItems.length === 0 && input !== "");
     }
 }
+
+// Bascule mode clair / sombre
+function toggleTheme() {
+    const isDark = document.body.classList.toggle('dark-theme');
+    const button = document.getElementById('themeToggle');
+    button.textContent = isDark ? '[ Mode clair ]' : '[ Mode sombre ]';
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+}
+
+// Restauration du thème au chargement
+(function() {
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+        document.getElementById('themeToggle').textContent = '[ Mode clair ]';
+    }
+})();
 </script>
 
 </body>
