@@ -35,17 +35,19 @@
             position: relative;
         }
 
-        /* Bouton de bascule de thème */
+        /* Bouton rectangle aligné à gauche */
         #themeToggle {
-            float: right;
+            display: block;
             background: transparent;
             border: 1px solid var(--main-black);
+            border-radius: 0; /* rectangle net */
             color: var(--main-black);
-            padding: 6px 12px;
+            padding: 5px 12px;
             font-family: inherit;
-            font-size: 0.85em;
+            font-size: 0.9em;
             cursor: pointer;
             margin-bottom: 20px;
+            text-align: center;
         }
 
         #themeToggle:hover {
@@ -135,7 +137,7 @@
 <body>
 
 <div class="wrapper">
-    <button id="themeToggle" onclick="toggleTheme()">[ Mode sombre ]</button>
+    <button id="themeToggle" onclick="toggleTheme()">sombre</button>
 
     <pre>
  _    _ _____ _____  _____  ______ _   _   _____   ____  __  __ _____ _____ _____   ____  _    _ 
@@ -330,7 +332,7 @@ function searchFunction() {
 function toggleTheme() {
     const isDark = document.body.classList.toggle('dark-theme');
     const button = document.getElementById('themeToggle');
-    button.textContent = isDark ? '[ Mode clair ]' : '[ Mode sombre ]';
+    button.textContent = isDark ? 'clair' : 'sombre';
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
 
@@ -338,7 +340,7 @@ function toggleTheme() {
 (function() {
     if (localStorage.getItem('theme') === 'dark') {
         document.body.classList.add('dark-theme');
-        document.getElementById('themeToggle').textContent = '[ Mode clair ]';
+        document.getElementById('themeToggle').textContent = 'clair';
     }
 })();
 </script>
